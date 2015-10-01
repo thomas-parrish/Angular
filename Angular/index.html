@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Car lister</title>
+	<meta charset="utf-8" />
+    <script src="Scripts/modernizr-2.8.3.js"></script>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/Site.css" rel="stylesheet" />
+</head>
+<body ng-app="car-finder" style="padding: 30px;">
+<div ng-controller="carCtrl as ctrl" ng-cloak>
+    <h4 class="center-block">Car Lister</h4>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-3">
+                <select ng-options="year for year in ctrl.options.years"
+                        ng-model="ctrl.selected.year"
+                        ng-change="ctrl.getMakes()"></select>
+            </div>
+            <div class="col-md-3">
+                <select ng-options="make for make in ctrl.options.makes"
+                        ng-model="ctrl.selected.make"
+                        ng-change="ctrl.getModels()"></select>
+            </div>
+            <div class="col-md-3">
+                <select ng-options="model for model in ctrl.options.models"
+                        ng-model="ctrl.selected.model"
+                        ng-change="ctrl.getTrims()"></select>
+            </div>
+            <div class="col-md-3">
+                <select ng-options="trim for trim in ctrl.options.trims"
+                        ng-model="ctrl.selected.trim"
+                        ng-change="ctrl.getCars()"></select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover table-responsive table-striped">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Year</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Trim</th>
+                    <th>Color</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="car in ctrl.cars" class="clickable"
+                    ng-click="ctrl.getCar(car.id)">
+                    <td>{{car.id}}</td>
+                    <td>{{car.year}}</td>
+                    <td>{{car.make}}</td>
+                    <td>{{car.model}}</td>
+                    <td>{{car.trim}}</td>
+                    <td>{{car.color}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+    <script src="Scripts/jquery-2.1.4.min.js"></script>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-ui/ui-bootstrap.min.js"></script>
+    <script src="Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="App/app.js"></script>
+
+    <!--<script src="App/testCarSvc.js"></script>-->
+    <script src="App/carSvc.js"></script>
+    <script src="App/carCtrl.js"></script>
+
+</body>
+</html>
